@@ -1,0 +1,51 @@
+import { useMoviesStore } from '../store/moviesStore';
+
+export const useMovies = () => {
+  const {
+    movies,
+    popularMovies,
+    searchResults,
+    currentMovie,
+    isLoading,
+    isSearching,
+    error,
+    searchQuery,
+    currentPage,
+    totalPages,
+    totalResults,
+    loadPopularMovies,
+    searchMovies,
+    clearSearch,
+    setSearchQuery,
+    getMovieDetails,
+    clearCurrentMovie,
+    setPage,
+    setLoading,
+    setError,
+    clearError,
+  } = useMoviesStore();
+
+  return {
+    movies,
+    popularMovies,
+    searchResults,
+    currentMovie,
+    isLoading,
+    isSearching,
+    error,
+    searchQuery,
+    currentPage,
+    totalPages,
+    totalResults,
+    loadPopularMovies,
+    searchMovies,
+    clearSearch,
+    setSearchQuery,
+    getMovieDetails,
+    clearCurrentMovie,
+    setPage,
+    setLoading,
+    setError,
+    clearError,
+  };
+};
