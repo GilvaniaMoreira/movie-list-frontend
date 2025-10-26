@@ -2,65 +2,21 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
 import { registerSchema } from '../../types/auth';
 import type { RegisterRequest } from '../../types/auth';
 import { useAuth } from '../../hooks/useAuth';
 import { useToast } from '../../hooks/useToast';
 import Button from '../../components/ui/Button';
 import Input from '../../components/ui/Input';
-import Card from '../../components/ui/Card';
-
-const RegisterContainer = styled.div`
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  padding: 16px;
-`;
-
-const RegisterCard = styled(Card)`
-  width: 100%;
-  max-width: 400px;
-  padding: 32px;
-`;
-
-const Title = styled.h1`
-  text-align: center;
-  margin-bottom: 32px;
-  color: #333;
-  font-size: 28px;
-`;
-
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-`;
-
-const ErrorMessage = styled.div`
-  background: #f8d7da;
-  color: #721c24;
-  padding: 12px;
-  border-radius: 8px;
-  font-size: 14px;
-`;
-
-const LinkContainer = styled.div`
-  text-align: center;
-  margin-top: 16px;
-  color: #666;
-`;
-
-const Link = styled.a`
-  color: #007bff;
-  text-decoration: none;
-  
-  &:hover {
-    text-decoration: underline;
-  }
-`;
+import {
+  RegisterContainer,
+  RegisterCard,
+  Title,
+  Form,
+  ErrorMessage,
+  LinkContainer,
+  Link
+} from './styles';
 
 const RegisterPage: React.FC = () => {
   const navigate = useNavigate();
