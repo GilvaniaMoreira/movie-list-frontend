@@ -28,7 +28,7 @@ interface FavoritesActions {
   
   // Share functionality
   generateShareToken: () => Promise<string>;
-  getSharedList: (shareToken: string) => Promise<{ owner: string; movies: FavoriteMovie[] }>;
+  getSharedList: (shareToken: string, page?: number) => Promise<{ owner: string; results: FavoriteMovie[]; page: number; total_pages: number; total_results: number }>;
   
   // State management
   setLoading: (loading: boolean) => void;
@@ -151,10 +151,10 @@ export const useFavoritesStore = create<FavoritesState & FavoritesActions>((set,
     }
   },
 
-  getSharedList: async (shareToken: string) => {
+  getSharedList: async (shareToken: string, page = 1) => {
     set({ isLoading: true, error: null });
     try {
-      const result = await favoritesApi.getSharedList(shareToken);
+      const result = await favoritesApi.getSharedList(shareToken, page);
       set({ isLoading: false });
       return result;
     } catch (error: any) {

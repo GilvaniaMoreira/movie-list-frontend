@@ -9,8 +9,8 @@ interface CardProps {
   onClick?: () => void;
 }
 
-const Card: React.FC<CardProps> = ({ children, ...props }) => {
-  return <StyledCard {...props}>{children}</StyledCard>;
+const Card: React.FC<CardProps> = ({ children, hover, ...props }) => {
+  return <StyledCard hover={hover} {...props}>{children}</StyledCard>;
 };
 
 export default Card;

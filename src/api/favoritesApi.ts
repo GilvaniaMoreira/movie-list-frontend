@@ -36,8 +36,8 @@ export const favoritesApi = {
   },
 
   // Obter lista compartilhada
-  getSharedList: async (shareToken: string): Promise<{ owner: string; movies: FavoriteMovie[] }> => {
-    const response = await apiClient.get(`/favorites/share/${shareToken}`);
+  getSharedList: async (shareToken: string, page = 1): Promise<{ owner: string; results: FavoriteMovie[]; page: number; total_pages: number; total_results: number }> => {
+    const response = await apiClient.get(`/favorites/share/${shareToken}?page=${page}&limit=10`);
     return response.data;
   },
 };
