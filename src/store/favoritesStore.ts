@@ -73,13 +73,10 @@ export const useFavoritesStore = create<FavoritesState & FavoritesActions>((set,
   addFavorite: async (data: AddFavoriteRequest) => {
     set({ isLoading: true, error: null });
     try {
-      const favorite: FavoriteMovie = await favoritesApi.addFavorite(data);
-      const tmdbId = favorite.tmdb_id || favorite.id;
-      set(state => ({
-        favorites: [...state.favorites, favorite],
-        favoriteIds: [...state.favoriteIds, tmdbId],
-        isLoading: false,
-      }));
+      await favoritesApi.addFavorite(data);
+      const tmdbId = data.tmdb_id;
+      // Recarregar os favoritos após adicionar
+      await get().loadFavorites(1);
     } catch (error: any) {
       set({
         error: error.response?.data?.error || 'Erro ao adicionar favorito',

@@ -5,19 +5,19 @@ export const authApi = {
   // Login
   login: async (data: LoginRequest): Promise<AuthResponse> => {
     const response = await apiClient.post('/auth/login', data);
-    return response.data;
+    return response.data.data;
   },
 
   // Registro
   register: async (data: RegisterRequest): Promise<AuthResponse> => {
     const response = await apiClient.post('/auth/register', data);
-    return response.data;
+    return response.data.data;
   },
 
   // Perfil do usuário
   getProfile: async (): Promise<User> => {
     const response = await apiClient.get('/auth/profile');
-    return response.data;
+    return response.data.data;
   },
 
   // Logout

@@ -59,6 +59,9 @@ export const useMoviesStore = create<MoviesState & MoviesActions>((set, get) => 
     set({ isLoading: true, error: null });
     try {
       const response: SearchResponse = await moviesApi.getPopularMovies(page);
+      if (!response || !response.results) {
+        throw new Error('Invalid response from API');
+      }
       set({
         popularMovies: response.results,
         movies: response.results,
@@ -79,6 +82,9 @@ export const useMoviesStore = create<MoviesState & MoviesActions>((set, get) => 
     set({ isSearching: true, error: null, searchQuery: query });
     try {
       const response: SearchResponse = await moviesApi.searchMovies(query, page);
+      if (!response || !response.results) {
+        throw new Error('Invalid response from API');
+      }
       set({
         searchResults: response.results,
         movies: response.results,
@@ -111,6 +117,9 @@ export const useMoviesStore = create<MoviesState & MoviesActions>((set, get) => 
     set({ isLoading: true, error: null });
     try {
       const movie: MovieDetails = await moviesApi.getMovieDetails(id);
+      if (!movie || !movie.id) {
+        throw new Error('Invalid movie data from API');
+      }
       set({
         currentMovie: movie,
         isLoading: false,

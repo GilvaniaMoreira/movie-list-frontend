@@ -5,17 +5,16 @@ export const favoritesApi = {
   // Obter favoritos
   getFavorites: async (page = 1): Promise<{ results: FavoriteMovie[]; page: number; total_pages: number; total_results: number }> => {
     const response = await apiClient.get(`/favorites?page=${page}&limit=10`);
-    return response.data;
+    return response.data.data;
   },
 
   // Adicionar favorito
-  addFavorite: async (data: AddFavoriteRequest): Promise<FavoriteMovie> => {
+  addFavorite: async (data: AddFavoriteRequest): Promise<void> => {
     // Converter tmdb_id para tmdbMovieId conforme esperado pelo backend
     const backendData = {
       tmdbMovieId: data.tmdb_id,
     };
-    const response = await apiClient.post('/favorites', backendData);
-    return response.data;
+    await apiClient.post('/favorites', backendData);
   },
 
   // Remover favorito
@@ -26,18 +25,18 @@ export const favoritesApi = {
   // Verificar se é favorito
   isFavorite: async (tmdbId: number): Promise<boolean> => {
     const response = await apiClient.get(`/favorites/check/${tmdbId}`);
-    return response.data.isFavorite;
+    return response.data.data.isFavorite;
   },
 
   // Gerar token de compartilhamento
   generateShareToken: async (): Promise<string> => {
     const response = await apiClient.post('/favorites/share-token');
-    return response.data.shareToken;
+    return response.data.data.shareToken;
   },
 
   // Obter lista compartilhada
   getSharedList: async (shareToken: string, page = 1): Promise<{ owner: string; results: FavoriteMovie[]; page: number; total_pages: number; total_results: number }> => {
     const response = await apiClient.get(`/favorites/share/${shareToken}?page=${page}&limit=10`);
-    return response.data;
+    return response.data.data;
   },
 };
