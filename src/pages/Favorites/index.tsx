@@ -30,7 +30,7 @@ import {
 
 const FavoritesPage: React.FC = () => {
   const navigate = useNavigate();
-  const { favorites, isLoading, error, loadFavorites, generateShareToken, currentPage, totalPages } = useFavorites();
+  const { favorites, isLoading, error, loadFavorites, generateShareToken, currentPage, totalPages, totalResults } = useFavorites();
   const { isAuthenticated } = useAuth();
   const { searchMovies, clearSearch } = useMovies();
   const { showSuccess, showError, showInfo } = useToast();
@@ -121,7 +121,7 @@ const FavoritesPage: React.FC = () => {
 
       <MainContent>
         <TitleContainer>
-          <Title>Meus Favoritos ({favorites.length})</Title>
+          <Title>Meus Favoritos ({totalResults})</Title>
           <Pagination
             currentPage={currentPage}
             totalPages={totalPages}

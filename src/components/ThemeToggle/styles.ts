@@ -5,11 +5,13 @@ export const ToggleContainer = styled.div`
   align-items: center;
   gap: 8px;
   margin-right: 16px;
+  position: relative;
+  padding: 0 8px;
 `;
 
 export const ToggleSwitch = styled.button<{ isActive: boolean }>`
   position: relative;
-  width: 60px;
+  width: 56px;
   height: 32px;
   border-radius: 16px;
   border: 2px solid var(--border-color);
@@ -20,7 +22,7 @@ export const ToggleSwitch = styled.button<{ isActive: boolean }>`
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
-  padding: 2px;
+  padding: 4px;
   
   &:hover {
     border-color: #667eea;
@@ -28,28 +30,30 @@ export const ToggleSwitch = styled.button<{ isActive: boolean }>`
 `;
 
 export const ToggleKnob = styled.div<{ isActive: boolean }>`
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   background: white;
   transition: transform 0.3s ease;
-  transform: ${props => props.isActive ? 'translateX(28px)' : 'translateX(0)'};
+  transform: ${props => props.isActive ? 'translateX(24px)' : 'translateX(0)'};
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 10;
 `;
 
 export const IconContainer = styled.div<{ isActive: boolean }>`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  transition: opacity 0.3s ease;
-  opacity: ${props => props.isActive ? 0.3 : 1};
+  transition: all 0.3s ease;
+  opacity: ${props => props.isActive ? 0.5 : 0.7};
+  z-index: 5;
   
   &:first-child {
-    left: 6px;
+    left: -28px;
   }
   
   &:last-child {
-    right: 6px;
+    right: -28px;
   }
 `;
 
