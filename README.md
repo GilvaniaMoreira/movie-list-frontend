@@ -2,6 +2,10 @@
 
 Interface de usuário desenvolvida em React com TypeScript para o sistema de lista de filmes, permitindo busca, visualização e gerenciamento de filmes favoritos.
 
+## 🌐 Deploy
+
+- **Frontend em Produção**: [https://movie-list-frontend-production.up.railway.app/](https://movie-list-frontend-production.up.railway.app/)
+
 ## Tecnologias
 
 - **Framework**: React 19
