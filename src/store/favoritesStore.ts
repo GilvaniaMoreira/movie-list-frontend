@@ -74,7 +74,6 @@ export const useFavoritesStore = create<FavoritesState & FavoritesActions>((set,
     set({ isLoading: true, error: null });
     try {
       await favoritesApi.addFavorite(data);
-      const tmdbId = data.tmdb_id;
       // Recarregar os favoritos após adicionar
       await get().loadFavorites(1);
     } catch (error: any) {
