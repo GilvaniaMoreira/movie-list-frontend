@@ -87,9 +87,6 @@ const LoginPage: React.FC = () => {
             Não tem uma conta?{' '}
             <Link href="/register">Registrar-se</Link>
           </p>
-          <p>
-            <Link href="/forgot-password">Esqueceu a senha?</Link>
-          </p>
         </LinkContainer>
       </LoginCard>
     </LoginContainer>
