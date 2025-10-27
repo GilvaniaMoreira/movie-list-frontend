@@ -8,29 +8,29 @@ interface FavoritesState {
   shareToken: string | null;
   isLoading: boolean;
   error: string | null;
-  // Pagination
+  // Paginação
   currentPage: number;
   totalPages: number;
   totalResults: number;
 }
 
 interface FavoritesActions {
-  // Load favorites
+  // Carregar favoritos
   loadFavorites: (page?: number) => Promise<void>;
   
-  // Add/Remove favorites
+  // Adicionar/Remover favoritos
   addFavorite: (data: AddFavoriteRequest) => Promise<void>;
   removeFavorite: (id: number) => Promise<void>;
   toggleFavorite: (movie: any) => Promise<void>;
   
-  // Check if favorite
+  // Verificar se é favorito
   isFavorite: (tmdbId: number) => boolean;
   
-  // Share functionality
+  // Funcionalidades de compartilhamento
   generateShareToken: () => Promise<string>;
   getSharedList: (shareToken: string, page?: number) => Promise<{ owner: string; results: FavoriteMovie[]; page: number; total_pages: number; total_results: number }>;
   
-  // State management
+  // Gerenciamento de estado
   setLoading: (loading: boolean) => void;
   setError: (error: string | null) => void;
   clearError: () => void;
@@ -43,7 +43,7 @@ export const useFavoritesStore = create<FavoritesState & FavoritesActions>((set,
   shareToken: null,
   isLoading: false,
   error: null,
-  // Pagination
+  // Paginação
   currentPage: 1,
   totalPages: 1,
   totalResults: 0,
@@ -72,11 +72,11 @@ export const useFavoritesStore = create<FavoritesState & FavoritesActions>((set,
 
   addFavorite: async (data: AddFavoriteRequest) => {
     set({ isLoading: true, error: null });
-    try {
-      await favoritesApi.addFavorite(data);
-      // Recarregar os favoritos após adicionar
-      await get().loadFavorites(1);
-    } catch (error: any) {
+          try {
+        await favoritesApi.addFavorite(data);
+        // Recarregar os favoritos após adicionar
+        await get().loadFavorites(1);
+      } catch (error: any) {
       set({
         error: error.response?.data?.error || 'Erro ao adicionar favorito',
         isLoading: false,

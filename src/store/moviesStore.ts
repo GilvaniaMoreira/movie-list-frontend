@@ -18,22 +18,22 @@ interface MoviesState {
 }
 
 interface MoviesActions {
-  // Popular movies
+  // Filmes populares
   loadPopularMovies: (page?: number) => Promise<void>;
   
-  // Search
+  // Busca
   searchMovies: (query: string, page?: number) => Promise<void>;
   clearSearch: () => void;
   setSearchQuery: (query: string) => void;
   
-  // Movie details
+  // Detalhes do filme
   getMovieDetails: (id: number) => Promise<void>;
   clearCurrentMovie: () => void;
   
-  // Pagination
+  // Paginação
   setPage: (page: number) => void;
   
-  // State management
+  // Gerenciamento de estado
   setLoading: (loading: boolean) => void;
   setError: (error: string | null) => void;
   clearError: () => void;
@@ -49,7 +49,7 @@ export const useMoviesStore = create<MoviesState & MoviesActions>((set, get) => 
   isSearching: false,
   error: null,
   searchQuery: '',
-  // Pagination
+  // Paginação
   currentPage: 1,
   totalPages: 1,
   totalResults: 0,
